@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import { CardMedia, Typography } from '@mui/material'
+import Link from 'next/link'
 
 const Home = () => {
     const [movies, setMovies] = useState([])
@@ -58,15 +59,17 @@ const Home = () => {
                 }}>
                 {movies.map(movie => (
                     <SwiperSlide key={movie.id}>
-                        <CardMedia
-                            component={'img'}
-                            sx={{
-                                aspectRatio: '2/3',
-                            }}
-                            image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                        />
+                        <Link href={`detail/movie/${movie.id}`}>
+                            <CardMedia
+                                component={'img'}
+                                sx={{
+                                    aspectRatio: '2/3',
+                                }}
+                                image={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                            />
 
-                        <Typography>公開日:{movie.release_date}</Typography>
+                            <Typography>公開日:{movie.release_date}</Typography>
+                        </Link>
                     </SwiperSlide>
                 ))}
             </Swiper>
