@@ -45,6 +45,17 @@ class ReviewController extends Controller
     }
 
     /**
+     * @param Review $review
+     * @return JsonResponse
+     */
+    public function show(Review $review): JsonResponse
+    {
+        $review->load('user', 'comments.user');
+
+        return response()->json($review);
+    }
+
+    /**
      * @param UpdateReviewRequest $request
      * @param Review $review
      * @return JsonResponse
